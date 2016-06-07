@@ -5,11 +5,9 @@ describe('Site', () => {
     await browser.url('/');
   });
 
-  it('should have example text', async () => {
+  it('should have a title', async () => {
     let headerText = await browser.getText('h1');
-    let descriptionText = await browser.getText('p');
 
-    assert.equal(headerText, 'Hello World!');
-    assert.equal(descriptionText, 'This is the starter es6-project.');
+    assert.equal(headerText, 'Project Tracker');
   });
 });
