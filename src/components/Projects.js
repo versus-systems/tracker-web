@@ -13,7 +13,7 @@ class Projects extends Component {
       />
     )
     let input
-    return (
+    let allProjects = (
       <div>
         <h1>Project Tracker</h1>
         <div>
@@ -30,6 +30,11 @@ class Projects extends Component {
           </form>
         </div>
         {projectList}
+      </div>
+    )
+    return (
+      <div>
+        {projectList[0]}
       </div>
     )
   }
