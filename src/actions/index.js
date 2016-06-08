@@ -23,6 +23,6 @@ export function startTask(projectId, taskId) {
   return {
     type: START_TASK,
     id: projectId,
-    taskId: taskId
+    taskId
   }
 }
