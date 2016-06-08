@@ -1,7 +1,7 @@
 module.exports = function () {
   this.When(/^I view the project$/, function () {
     return this.browser
-               .url('/')
+               .url('http://localhost:8080/')
   })
 
   this.Then(/^I see '(.*)'$/, function (text) {
