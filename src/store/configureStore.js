@@ -4,7 +4,8 @@ import rootReducer from '../reducers'
 export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
-    initialState
+    initialState,
+    window.devToolsExtension && window.devToolsExtension()
   )
 
   if (module.hot) {

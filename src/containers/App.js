@@ -1,31 +1,7 @@
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Component, PropTypes } from 'react';
-import Project from 'components/Project'
-
-class App extends Component {
-  render() {
-    const { projects } = this.props
-    let projectList = projects.map(project =>
-      <Project
-        key={project.id}
-        {...project}
-      />
-    )
-    return (
-      <div>
-        <h1>Project Tracker</h1>
-        {projectList}
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
-  })).isRequired
-}
+import Projects from 'components/Projects'
+import * as ProjectActions from '../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -34,13 +10,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  }
+  return bindActionCreators(ProjectActions, dispatch)
 }
 
-const ConnectedApp = connect(
+const App = connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(Projects)
 
-export default ConnectedApp;
+export default App;
