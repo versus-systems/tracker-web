@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import {assert} from '../support/chai';
 
 describe('Site', () => {
@@ -6,8 +7,8 @@ describe('Site', () => {
   });
 
   it('should have a title', async () => {
-    let headerText = await browser.getText('h1');
+    let headerText = await browser.getText('h3');
 
-    assert.equal(headerText, 'Project Tracker');
+    assert.equal(headerText, 'Sample Project');
   });
 });

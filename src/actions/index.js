@@ -5,7 +5,7 @@ export const START_TASK = 'START_TASK'
 export function addProject(name) {
   return {
     type: ADD_PROJECT,
-    name: name
+    name
   }
 }
 
@@ -14,7 +14,7 @@ export function addTask(projectId, name) {
     type: ADD_TASK,
     id: projectId,
     task: {
-      name: name
+      name
     }
   }
 }
