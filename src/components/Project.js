@@ -13,7 +13,7 @@ class Project extends Component {
               {...task}
             />
     }
-    let todoList = _.filter(tasks.list, t => t.state === 'todo').map(taskDOM)
+    let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
     let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
     let input
     return (
@@ -35,9 +35,9 @@ class Project extends Component {
             <button type='submit'>Add Task</button>
           </form>
         </div>
-        <h4>To Do</h4>
+        <h4 className='to-do'>To Do</h4>
         {todoList}
-        <h4>In Progress</h4>
+        <h4 className='in-progress'>In Progress</h4>
         {inProgressList}
       </div>
     );

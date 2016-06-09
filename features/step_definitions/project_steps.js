@@ -7,7 +7,8 @@ module.exports = function () {
   this.Then(/^I see '(.*)'$/, function (text) {
     let expect = this.expect;
     let header = this.driver
-                     .findElement({ css: 'h3' }).getText()
+                     .findElement({ css: 'h3' })
+                     .getText()
     return expect(header).to.eventually.equal(text)
   })
 }

@@ -10,7 +10,8 @@ var driver = new webdriver.Builder()
                           .build();
 
 function World() {
-  this.driver = driver
+  this.webdriver = webdriver;
+  this.driver = driver;
   this.chai = require('chai');
   this.chai.use(require('chai-as-promised'));
   this.expect = chai.expect;
