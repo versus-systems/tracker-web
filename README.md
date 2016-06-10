@@ -16,6 +16,12 @@ This application is very incomplete and as such has plenty of room for you to ad
 * React 15
 * Redux 3.5
 
+If you are on a Mac and don't have Node installed yet:
+
+`brew install node`
+
+If you are using Linux install via your favorite package manager.
+
 ### Enviroment Setup
 
 Though this is a front end web project with no "server" component, it does use Node for both building the project and serving it locally in development mode via Webpack.
@@ -31,8 +37,8 @@ There is a unit test framework setup using Mocha, however currently there are no
 There is a small Cucumber feature suite set up with several features described.
 The application must be running/served for the feature tests to work.
 
-* `npm run start` - Start the webpack dev server
-* `bin/cucumber` - Run the cucumber features
+* `npm run start` - Start the webpack dev server in one terminal
+* `bin/cucumber` - Run the cucumber features in another terminal
 
 ### Interacting with the system
 
