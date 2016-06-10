@@ -5,7 +5,7 @@ import { ADD_PROJECT, ADD_TASK, START_TASK } from '../actions'
 const calculateCounters = (list) => {
   return {
     count: list.length,
-    todo: _.filter(list, t => t.state === 'todo').length,
+    todo: _.filter(list, t => t.state === 'to-do').length,
     inProgress: _.filter(list, t => t.state === 'in-progress').length,
     list: list
   }
@@ -17,7 +17,7 @@ const task = (state, action) => {
       return {
         id: uuid(),
         name: action.task.name,
-        state: 'todo'
+        state: 'to-do'
       }
     case START_TASK:
       if (state.id !== action.taskId) {

@@ -4,7 +4,7 @@ class Task extends Component {
   render() {
     const { startTask, projectId, id, name, state } = this.props
     let actionButton = ''
-    if (state === 'todo') {
+    if (state === 'to-do') {
       actionButton = <button onClick={e => {
         e.preventDefault()
         startTask(projectId, id)
@@ -12,7 +12,7 @@ class Task extends Component {
     }
     return (
       <div>
-        <h6>{name} {actionButton}</h6>
+        <h6 className={state}>{name} {actionButton}</h6>
       </div>
     );
   }
