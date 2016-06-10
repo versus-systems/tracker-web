@@ -12,16 +12,12 @@ module.exports = function () {
     }
     return this.driver
                .findElement({ css: 'h6.' + state })
-               .findElement({ css: 'button' })
-               .click()
+               .findElement({ css: 'button' }).click()
   })
 
   this.Then(/^I see the task '(.*)' under '(.*)'$/, function (text, heading) {
-    let expect = this.expect
     let state = heading.toLowerCase().split(' ').join('-')
-    let name = this.driver
-                   .findElement({ css: 'h6.' + state })
-                   .getText()
-    return expect(name).to.eventually.have.string(text)
+    let name = this.driver.findElement({ css: 'h6.' + state }).getText()
+    return this.expect(name).to.eventually.have.string(text)
   })
 }
