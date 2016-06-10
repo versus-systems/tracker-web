@@ -22,7 +22,7 @@ If you are on a Mac and don't have Node installed yet:
 
 If you are using Linux install via your favorite package manager.
 
-### Enviroment Setup
+### Environment Setup
 
 Though this is a front end web project with no "server" component, it does use Node for both building the project and serving it locally in development mode via Webpack.
 
