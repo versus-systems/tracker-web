@@ -10,9 +10,9 @@ This application is very incomplete and as such has plenty of room for you to ad
 
 ## Overview
 
-Inside the `design` folder is a picture of the project dashboard we would like you to build. 
+Inside the `design` folder is a picture of the projectg dashboard we would like you to build. 
 
-The project has been setup with Redux and Flux and we would like you to make the dasboard look and feel as pictured. 
+The project has been setup with Redux and Redux and we would like you to make the dasboard look and feel as pictured. 
 
 ### Style Guide
 #### Font
