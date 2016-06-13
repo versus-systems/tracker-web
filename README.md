@@ -1,4 +1,4 @@
-# Software Development Sample Project
+# Frontend Development Sample Project
 
 This is a sample project used by applicants interested in a career at Versus Systems.
 
@@ -7,6 +7,22 @@ This is a sample project used by applicants interested in a career at Versus Sys
 At Versus Systems a portion of our platform is currently built on a similar stack. Using this semi-real-world application helps us to determine how you interact with a code base to add a feature.
 
 This application is very incomplete and as such has plenty of room for you to add a feature.
+
+## Overview
+
+Inside the `design` folder is a picture of the project dashboard we would like you to build. 
+
+The project has been setup with Redux and Flux and we would like you to make the dasboard look and feel as pictured. 
+
+### Style Guide
+#### Font
+* Roboto
+
+#### Colors
+* Red: #C53E3E
+* Green: #3EC556
+* Blue: #3E74C5
+
 
 ## Setup
 
