@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Component, PropTypes } from 'react';
 import Task from './Task'
+import { Circle } from 'rc-progress';
 
 class Project extends Component {
   render() {
@@ -17,12 +18,28 @@ class Project extends Component {
     let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
     let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
     let inputName
-    let inputDescription
+    let inputDescription 
+    let percentComplete = tasks.list.length > 0 ? tasks.complete/tasks.count*100 : 0
+    let percentTodo = tasks.list.length > 0 ? tasks.todo/tasks.count*100 : 0
+    let percentInProgress = tasks.list.length > 0 ? tasks.inProgress/tasks.count*100 : 0
+    
     return (
       <div>
         <h3>{name}</h3>
-        <div>
-          <p>Tasks: {tasks.count}, Complete: {tasks.complete}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
+        <div className="container">
+          <div className="col-md-4">
+            Complete: {tasks.complete}
+            <Circle percent={ percentComplete } strokeWidth="10" strokeColor="#3EC556" />
+          </div>
+          <div className="col-md-4">
+            In Progress: {tasks.todo} 
+            <Circle percent={ percentInProgress } strokeWidth="10" strokeColor="#3E74C5" />
+          </div>
+          <div className="col-md-4">
+            To Do: {tasks.inProgress}
+            <Circle percent={ percentTodo } strokeWidth="10" strokeColor="#C53E3E" />
+          </div>
+          <p>Tasks: {tasks.count}</p>
         </div>
         <div>
           <form onSubmit={e => {
