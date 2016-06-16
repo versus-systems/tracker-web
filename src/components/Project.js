@@ -4,11 +4,12 @@ import Task from './Task'
 
 class Project extends Component {
   render() {
-    const { addTask, startTask, id, name, tasks } = this.props
+    const { completeTask, addTask, startTask, id, name, tasks } = this.props
     const taskDOM = (task) => {
       return <Task
               key={task.id}
               startTask={startTask}
+              completeTask={completeTask}
               projectId={id}
               {...task}
             />
@@ -20,7 +21,7 @@ class Project extends Component {
       <div>
         <h3>{name}</h3>
         <div>
-          <p>Tasks: {tasks.count}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
+          <p>Tasks: {tasks.count}, Complete: {tasks.complete}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
         </div>
         <div>
           <form onSubmit={e => {

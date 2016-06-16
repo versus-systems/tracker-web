@@ -3,12 +3,13 @@ import Project from './Project'
 
 class Projects extends Component {
   render() {
-    const { addProject, addTask, startTask, projects } = this.props
+    const { completeTask, addProject, addTask, startTask, projects } = this.props
     let projectList = projects.map(project =>
       <Project
         key={project.id}
         addTask={addTask}
         startTask={startTask}
+        completeTask={completeTask}
         {...project}
       />
     )
