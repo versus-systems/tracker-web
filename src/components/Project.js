@@ -16,7 +16,8 @@ class Project extends Component {
     }
     let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
     let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
-    let input
+    let inputName
+    let inputDescription
     return (
       <div>
         <h3>{name}</h3>
@@ -26,13 +27,15 @@ class Project extends Component {
         <div>
           <form onSubmit={e => {
             e.preventDefault()
-            if (!input.value.trim()) {
+            if (!inputName.value.trim()) {
               return
             }
-            addTask(id, input.value)
-            input.value = ''
+            addTask(id, inputName.value, inputDescription.value)
+            inputName.value = ''
+            inputDescription.value = ''
           }}>
-            <input ref={node => { input = node }} />
+            <input ref={node => { inputName = node }} />
+            <input ref={node => { inputDescription = node }} />
             <button type='submit'>Add Task</button>
           </form>
         </div>

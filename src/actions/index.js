@@ -10,12 +10,13 @@ export function addProject(name) {
   }
 }
 
-export function addTask(projectId, name) {
+export function addTask(projectId, name, description) {
   return {
     type: ADD_TASK,
     id: projectId,
     task: {
-      name
+      name,
+      description
     }
   }
 }

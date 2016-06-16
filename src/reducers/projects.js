@@ -18,6 +18,7 @@ const task = (state, action) => {
       return {
         id: uuid(),
         name: action.task.name,
+        description: action.task.description,
         state: 'to-do'
       }
     case START_TASK:
