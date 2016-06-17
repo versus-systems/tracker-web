@@ -1,22 +1,11 @@
-import _ from 'lodash'
 import { Component, PropTypes } from 'react'
-import Task from './Task'
+import Tasklist from './Tasklist'
 import Graph from './Graph'
+
 
 class Project extends Component {
   render() {
     const { completeTask, addTask, startTask, id, name, tasks } = this.props
-    const taskDOM = (task) => {
-      return <Task
-              key={task.id}
-              startTask={startTask}
-              completeTask={completeTask}
-              projectId={id}
-              {...task}
-            />
-    }
-    let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
-    let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
     let inputName
     let inputDescription
     return (
@@ -48,12 +37,12 @@ class Project extends Component {
               <button type='submit' className='btn btn-primary'>Create</button>
             </form>
           </div>
-          <h2 className='to-do blocks'>To Do</h2>
-          <hr></hr>
-          {todoList}
-          <h2 className='in-progress blocks'>In Progress</h2>
-          <hr></hr>
-          {inProgressList}
+          <Tasklist
+            startTask={startTask}
+            completeTask={completeTask}
+            tasks={tasks}
+            id={id}
+          />
         </div>
       </div>
     );
