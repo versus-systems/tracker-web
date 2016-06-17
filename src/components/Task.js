@@ -17,8 +17,12 @@ class Task extends Component {
       }} >Complete Task</button>
     }
     return (
-      <div>
-        <h3 className={state}>{name} {description} {actionButton} </h3>
+      <div className='task-container'>
+        <div className='task-item'>
+          <h3 className={state}>{name}</h3>
+          <h5> {description} </h5>
+        </div>
+        <div className='task-item actionButton'> {actionButton} </div>
       </div>
     );
   }

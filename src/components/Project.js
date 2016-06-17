@@ -24,28 +24,41 @@ class Project extends Component {
     let percentInProgress = tasks.list.length > 0 ? tasks.inProgress/tasks.count*100 : 0
 
     return (
-      <div className='container'>
+      <div>
         <h1>{name}</h1>
-        <div className='container'>
+        <div className='container list-container'>
           <div className='col-md-4 div-border'>
-            <p className='center-text'>Complete: {Math.floor(percentComplete)}</p>
+            <div className='center-container'>
+              <p className='center-text-horizontal graphOne graphNumber' > {tasks.complete} </p>
+              <p className='center-text-horizontal graphText' > Complete </p>
+            </div>
+            <p className='center-text'>{Math.floor(percentComplete)}%</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentComplete } strokeWidth='10' strokeColor='#3EC556' />
             </div>
           </div>
           <div className='col-md-4 div-border'>
-            <p className='center-text'>In Progress: {Math.floor(percentInProgress)}</p>
+            <div className='center-container'>
+              <p className='center-text-horizontal graphTwo graphNumber' > {tasks.inProgress} </p>
+              <p className='center-text-horizontal graphText' > In Progress </p>
+            </div>
+            <p className='center-text'>{Math.floor(percentInProgress)}%</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentInProgress } strokeWidth='10' strokeColor='#3E74C5' />
             </div>
           </div>
           <div className='col-md-4 div-border'>
-            <p className='center-text'>To Do: {Math.floor(percentTodo)}</p>
+            <div className='center-container'>
+              <p className='center-text-horizontal graphThree graphNumber' > {tasks.todo} </p>
+              <p className='center-text-horizontal graphText' > Todo </p>
+            </div>
+            <p className='center-text'>{Math.floor(percentTodo)}%</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentTodo } strokeWidth='10' strokeColor='#C53E3E' />
             </div>
           </div>
-          <p>Tasks: {tasks.count}</p>
+        </div>
+        <div className='container list-container'>
           <h2 className='createTask blocks'> Create New Task</h2>
           <hr></hr>
           <div>
@@ -57,16 +70,17 @@ class Project extends Component {
               addTask(id, inputName.value, inputDescription.value)
               inputName.value = ''
               inputDescription.value = ''
+              document.querySelector('.first-input').focus();
             }}>
               <div className="form-group">
                 <label for="name">Task Name</label>
-                <input className='form-control' ref={node => { inputName = node }} />
+                <input className='form-control first-input' ref={node => { inputName = node }} />
               </div>
               <div className="form-group">
                 <label for="desc">Task Description</label>
                 <input className='form-control' ref={node => { inputDescription = node }} />
               </div>
-              <button type='submit' className='btn btn-primary'>Add Task</button>
+              <button type='submit' className='btn btn-primary'>Create</button>
             </form>
           </div>
           <h2 className='to-do blocks'>To Do</h2>

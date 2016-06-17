@@ -1,46 +1,106 @@
 .col-centered{
-    float: none;
-    margin: 0 auto;
-}
-
-.center-container {
-  /*height: 100%;
-  position: relative;*/
+  float: none;
+  margin: 0 auto;
 }
 
 .center-text {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
+  font-size: 1.5em;
+  font-weight: 300;
   transform: translate(-50%, -50%);
 }
+.center-text-horizontal {
+  display: inline;
+  vertical-align: middle;
+  font-size: 2.5em;
+  font-weight: 100;
+}
+
+
+.list-container {
+  border: 1px solid lightgray;
+}
+.list-container:nth-child(2) {
+  padding: 0;
+}
+.list-container:last-child {
+  border-top: none;
+}
+
 
 .div-border {
-  border: 5px solid gray;
+  border-left: 1px solid lightgray;
 }
+.div-border:last-child {
+  border-right: none;
+}
+.div-border:first-child {
+  border-left: none;
+}
+
+
+.graphText{
+  font-size: 1.5em;
+}
+.graphOne {
+  color: #3EC556;
+}
+.graphTwo {
+  color: #3E74C5;
+}
+.graphThree{
+  color: #C53E3E;
+}
+
 
 hr {  
   border: none;
   height: 1px;
   background-color: lightgray;
+  margin: 0 -13px;
+}
+hr:nth-child(2) {
+  margin-bottom: 10px;
 }
 
-label, h2.blocks {
+
+label, h2.blocks, h5{
   font-weight:100;
 }
-
 h3 {
   font-weight:300;
+  margin-top: 10px;
 }
-
 input {
   font-weight:400;
 }
-/*h3, h2.blocks, .btn, label, input*/
+
 * {
   font-family: "Roboto";
 }
 
+.center-container {
+  text-align: center;
+}
 
+.task-item {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+}
 
+.task-container{
+  width: 50%;
+}
+
+.actionButton{
+  float: right;
+}
+
+button {
+  display: inline-block;
+  width: 10em;
+}
