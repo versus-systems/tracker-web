@@ -5,20 +5,20 @@ class Task extends Component {
     const { completeTask, startTask, projectId, id, name, state, description} = this.props
     let actionButton = ''
     if (state === 'to-do') {
-      actionButton = <button onClick={e => {
+      actionButton = <button className='btn btn-primary' onClick={e => {
         e.preventDefault()
         startTask(projectId, id)
       }}>Start Task</button>
     }
     else if (state === 'in-progress') {
-      actionButton = <button onClick={e => {
+      actionButton = <button className='btn btn-primary' onClick={e => {
         e.preventDefault()
         completeTask(projectId, id)
-      }}>Complete Task</button>
+      }} >Complete Task</button>
     }
     return (
       <div>
-        <h6 className={state}>{name} {description} {actionButton} </h6>
+        <h3 className={state}>{name} {description} {actionButton} </h3>
       </div>
     );
   }

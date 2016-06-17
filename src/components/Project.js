@@ -24,48 +24,58 @@ class Project extends Component {
     let percentInProgress = tasks.list.length > 0 ? tasks.inProgress/tasks.count*100 : 0
 
     return (
-      <div>
-        <h3>{name}</h3>
+      <div className='container'>
+        <h1>{name}</h1>
         <div className='container'>
-          <div className='col-md-4 center-container'>
+          <div className='col-md-4 div-border'>
             <p className='center-text'>Complete: {Math.floor(percentComplete)}</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentComplete } strokeWidth='10' strokeColor='#3EC556' />
             </div>
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 div-border'>
             <p className='center-text'>In Progress: {Math.floor(percentInProgress)}</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentInProgress } strokeWidth='10' strokeColor='#3E74C5' />
             </div>
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-4 div-border'>
             <p className='center-text'>To Do: {Math.floor(percentTodo)}</p>
             <div className='col-md-6 col-centered'>
               <Circle percent={ percentTodo } strokeWidth='10' strokeColor='#C53E3E' />
             </div>
           </div>
           <p>Tasks: {tasks.count}</p>
+          <h2 className='createTask blocks'> Create New Task</h2>
+          <hr></hr>
+          <div>
+            <form onSubmit={e => {
+              e.preventDefault()
+              if (!inputName.value.trim()) {
+                return
+              }
+              addTask(id, inputName.value, inputDescription.value)
+              inputName.value = ''
+              inputDescription.value = ''
+            }}>
+              <div className="form-group">
+                <label for="name">Task Name</label>
+                <input className='form-control' ref={node => { inputName = node }} />
+              </div>
+              <div className="form-group">
+                <label for="desc">Task Description</label>
+                <input className='form-control' ref={node => { inputDescription = node }} />
+              </div>
+              <button type='submit' className='btn btn-primary'>Add Task</button>
+            </form>
+          </div>
+          <h2 className='to-do blocks'>To Do</h2>
+          <hr></hr>
+          {todoList}
+          <h2 className='in-progress blocks'>In Progress</h2>
+          <hr></hr>
+          {inProgressList}
         </div>
-        <div>
-          <form onSubmit={e => {
-            e.preventDefault()
-            if (!inputName.value.trim()) {
-              return
-            }
-            addTask(id, inputName.value, inputDescription.value)
-            inputName.value = ''
-            inputDescription.value = ''
-          }}>
-            <input ref={node => { inputName = node }} />
-            <input ref={node => { inputDescription = node }} />
-            <button type='submit'>Add Task</button>
-          </form>
-        </div>
-        <h4 className='to-do'>To Do</h4>
-        {todoList}
-        <h4 className='in-progress'>In Progress</h4>
-        {inProgressList}
       </div>
     );
   }
