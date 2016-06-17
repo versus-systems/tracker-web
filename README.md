@@ -10,9 +10,9 @@ This application is very incomplete and as such has plenty of room for you to ad
 
 ## Overview
 
-Inside the `design` folder is a picture of the projectg dashboard we would like you to build. 
+Inside the `design` folder is a picture of the projectg dashboard we would like you to build.
 
-The project has been setup with Redux and Redux and we would like you to make the dasboard look and feel as pictured. 
+The project has been setup with Redux and Redux and we would like you to make the dasboard look and feel as pictured.
 
 ### Style Guide
 #### Font
@@ -51,9 +51,7 @@ There is a unit test framework setup using Mocha, however currently there are no
 * `npm run tests`
 
 There is a small Cucumber feature suite set up with several features described.
-The application must be running/served for the feature tests to work.
 
-* `npm run start` - Start the webpack dev server in one terminal
 * `bin/cucumber` - Run the cucumber features in another terminal
 
 ### Interacting with the system

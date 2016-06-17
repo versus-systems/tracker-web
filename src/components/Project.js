@@ -3,6 +3,15 @@ import { Component, PropTypes } from 'react';
 import Task from './Task'
 
 class Project extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { newTaskName: '' };
+  }
+
+  setNewClassName(e) {
+    this.setState({ newTaskName: e.target.value })
+  }
+
   render() {
     const { addTask, startTask, id, name, tasks } = this.props
     const taskDOM = (task) => {
@@ -15,7 +24,6 @@ class Project extends Component {
     }
     let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
     let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
-    let input
     return (
       <div>
         <h3>{name}</h3>
@@ -25,14 +33,14 @@ class Project extends Component {
         <div>
           <form onSubmit={e => {
             e.preventDefault()
-            if (!input.value.trim()) {
+            if (!this.state.newTaskName) {
               return
             }
-            addTask(id, input.value)
-            input.value = ''
+            addTask(id, this.state.newTaskName)
+            this.setState({ newTaskName: '' })
           }}>
-            <input ref={node => { input = node }} />
-            <button type='submit'>Add Task</button>
+            <input value={this.state.newTaskName} onChange={this.setNewClassName.bind(this)} />
+            <button className='add-task' type='submit'>Add Task</button>
           </form>
         </div>
         <h4 className='to-do'>To Do</h4>
