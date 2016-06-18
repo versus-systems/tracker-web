@@ -1,44 +1,49 @@
-import _ from 'lodash'
-import { Component, PropTypes } from 'react';
-import Task from './Task'
+import { Component, PropTypes } from 'react'
+import Tasklist from './Tasklist'
+import Graph from './Graph'
+
 
 class Project extends Component {
   render() {
-    const { addTask, startTask, id, name, tasks } = this.props
-    const taskDOM = (task) => {
-      return <Task
-              key={task.id}
-              startTask={startTask}
-              projectId={id}
-              {...task}
-            />
-    }
-    let todoList = _.filter(tasks.list, t => t.state === 'to-do').map(taskDOM)
-    let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
-    let input
+    const { completeTask, addTask, startTask, id, name, tasks } = this.props
+    let inputName
+    let inputDescription
     return (
       <div>
-        <h3>{name}</h3>
-        <div>
-          <p>Tasks: {tasks.count}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
+        <h1>{name}</h1>
+        <Graph tasks={tasks} />
+        <div className='container bordered-container'>
+          <h2 className='createTask block-label'> Create New Task</h2>
+          <hr></hr>
+          <div>
+            <form onSubmit={e => {
+              e.preventDefault()
+              if (!inputName.value.trim()) {
+                return
+              }
+              addTask(id, inputName.value, inputDescription.value)
+              inputName.value = ''
+              inputDescription.value = ''
+              document.querySelector('.first-input').focus();
+            }}>
+              <div className="form-group">
+                <label className='input-label' for="name">Task Name</label>
+                <input className='form-control first-input input' ref={node => { inputName = node }} />
+              </div>
+              <div className="form-group">
+                <label className='input-label' for="desc">Task Description</label>
+                <input className='form-control input' ref={node => { inputDescription = node }} />
+              </div>
+              <button type='submit' className='btn btn-primary'>Create</button>
+            </form>
+          </div>
+          <Tasklist
+            startTask={startTask}
+            completeTask={completeTask}
+            tasks={tasks}
+            id={id}
+          />
         </div>
-        <div>
-          <form onSubmit={e => {
-            e.preventDefault()
-            if (!input.value.trim()) {
-              return
-            }
-            addTask(id, input.value)
-            input.value = ''
-          }}>
-            <input ref={node => { input = node }} />
-            <button type='submit'>Add Task</button>
-          </form>
-        </div>
-        <h4 className='to-do'>To Do</h4>
-        {todoList}
-        <h4 className='in-progress'>In Progress</h4>
-        {inProgressList}
       </div>
     );
   }

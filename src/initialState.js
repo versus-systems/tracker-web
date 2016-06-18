@@ -9,6 +9,7 @@ const initialState = {
         count: 0,
         todo: 0,
         inProgress: 0,
+        complete: 0,
         list: []
       }
     },
@@ -19,6 +20,7 @@ const initialState = {
         count: 0,
         todo: 0,
         inProgress: 0,
+        complete: 0,
         list: []
       }
     }
