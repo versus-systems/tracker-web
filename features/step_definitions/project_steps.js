@@ -6,7 +6,7 @@ module.exports = function () {
   })
 
   this.Then(/^I see '(.*)'$/, function (text) {
-    let header = this.driver.findElement({ css: 'h3' }).getText()
+    let header = this.driver.findElement({ css: 'h1' }).getText()
     return this.expect(header).to.eventually.equal(text)
   })
 }
