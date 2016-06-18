@@ -3,10 +3,11 @@
   margin: 0 auto;
 }
 
-.center-text {
+/*Graph Percentage and Total Centering and Font*/
+.percent {
   margin: 0;
   position: absolute;
-  top: 60%;
+  top: 63%;
   left: 50%;
   font-size: 1.5em;
   font-weight: 300;
@@ -19,29 +20,29 @@
   font-weight: 100;
 }
 
-
-.list-container {
+/*Creates outer border/centers outer graphs/removes overlaping*/
+.bordered-container {
   border: 1px solid lightgray;
 }
-.list-container:nth-child(2) {
+.bordered-container:nth-child(2) {
   padding: 0;
 }
-.list-container:last-child {
+.bordered-container:last-child {
   border-top: none;
 }
 
-
-.div-border {
+/*Non-overlapping graph border*/
+.graph-border {
   border-left: 1px solid lightgray;
 }
-.div-border:last-child {
+.graph-border:last-child {
   border-right: none;
 }
-.div-border:first-child {
+.graph-border:first-child {
   border-left: none;
 }
 
-
+/*Graph Component Color and Size*/
 .graphText{
   font-size: 1.5em;
 }
@@ -55,35 +56,30 @@
   color: #C53E3E;
 }
 
-
-hr {  
+/*Stretches thematic breaks past parent padding*/
+.status-break {
   border: none;
   height: 1px;
   background-color: lightgray;
   margin: 0 -13px;
 }
-hr:nth-child(2) {
+.status-break:nth-child(2) {
   margin-bottom: 10px;
 }
 
-
-label, h2.blocks, h5{
+/*Font Styling*/
+.input-label, .block-label, .task-description{
   font-weight:100;
 }
-h3 {
+.task-name {
   font-weight:300;
   margin-top: 10px;
 }
-input {
+.input {
   font-weight:400;
 }
-
 * {
   font-family: "Roboto";
-}
-
-.center-container {
-  text-align: center;
 }
 
 .task-item {
@@ -100,7 +96,7 @@ input {
   float: right;
 }
 
-button {
+.btn {
   display: inline-block;
   width: 10em;
 }

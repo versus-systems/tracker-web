@@ -18,11 +18,11 @@ class Tasklist extends Component {
     let inProgressList = _.filter(tasks.list, t => t.state === 'in-progress').map(taskDOM)
     return (
       <div>
-        <h2 className='to-do blocks'>To Do</h2>
-        <hr></hr>
+        <h2 className='to-do block-label'>To Do</h2>
+        <hr className='status-break'></hr>
         { todoList }
-        <h2 className='in-progress blocks'>In Progress </h2>
-        <hr></hr>
+        <h2 className='in-progress block-label'>In Progress </h2>
+        <hr className='status-break'></hr>
         { inProgressList }
       </div>
     );

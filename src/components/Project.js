@@ -12,8 +12,8 @@ class Project extends Component {
       <div>
         <h1>{name}</h1>
         <Graph tasks={tasks} />
-        <div className='container list-container'>
-          <h2 className='createTask blocks'> Create New Task</h2>
+        <div className='container bordered-container'>
+          <h2 className='createTask block-label'> Create New Task</h2>
           <hr></hr>
           <div>
             <form onSubmit={e => {
@@ -27,12 +27,12 @@ class Project extends Component {
               document.querySelector('.first-input').focus();
             }}>
               <div className="form-group">
-                <label for="name">Task Name</label>
-                <input className='form-control first-input' ref={node => { inputName = node }} />
+                <label className='input-label' for="name">Task Name</label>
+                <input className='form-control first-input input' ref={node => { inputName = node }} />
               </div>
               <div className="form-group">
-                <label for="desc">Task Description</label>
-                <input className='form-control' ref={node => { inputDescription = node }} />
+                <label className='input-label' for="desc">Task Description</label>
+                <input className='form-control input' ref={node => { inputDescription = node }} />
               </div>
               <button type='submit' className='btn btn-primary'>Create</button>
             </form>

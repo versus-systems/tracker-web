@@ -19,8 +19,8 @@ class Task extends Component {
     return (
       <div className='task-container'>
         <div className='task-item'>
-          <h3 className={state}>{name}</h3>
-          <h5> {description} </h5>
+          <h3 className={state, 'task-name'}>{name}</h3>
+          <h5 className= 'task-description'> {description} </h5>
         </div>
         <div className='task-item actionButton'> {actionButton} </div>
       </div>
