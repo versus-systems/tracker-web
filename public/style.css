@@ -77,26 +77,22 @@
 }
 .input {
   font-weight:400;
+  width: 45%;
 }
 * {
   font-family: "Roboto";
 }
 
-.task-item {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 5px;
-}
-
 .task-container{
   width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .actionButton{
-  float: right;
+  margin-left: auto;
 }
 
 .btn {
-  display: inline-block;
   width: 10em;
 }
