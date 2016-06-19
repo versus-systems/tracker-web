@@ -54,8 +54,6 @@ There is a small Cucumber feature suite set up with several features described.
 The application must be running/served for the feature tests to work.
 
 * `npm run start` - Start the webpack dev server in one terminal
-* `bin/cucumber` - Run the cucumber features in another terminal
-(w/ Chrome, above may require installation of ChromeDriver '- npm install -g chromedriver')
 
 ### Interacting with the system
 
