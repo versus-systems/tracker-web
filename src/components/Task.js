@@ -1,6 +1,14 @@
 import { Component, PropTypes } from 'react';
 
 class Task extends Component {
+  static propTypes = {
+    startTask: PropTypes.func.isRequired,
+    projectId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired
+  }
+
   render() {
     const { startTask, projectId, id, name, state } = this.props
     let actionButton = ''
@@ -16,14 +24,6 @@ class Task extends Component {
       </div>
     );
   }
-}
-
-Task.propTypes = {
-  startTask: PropTypes.func.isRequired,
-  projectId: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired
 }
 
 export default Task;

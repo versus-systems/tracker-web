@@ -1,7 +1,7 @@
 module.exports = function () {
   this.When(/^I add a task '(.*)'$/, function (name, done) {
     this.wrapper.find('input').simulate('change', {target: {value: name}});
-    this.wrapper.find('form').simulate('submit');
+    this.wrapper.find('.new-task').simulate('click');
     done();
   })
 
