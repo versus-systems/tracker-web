@@ -1,7 +1,28 @@
 import React, { Component, PropTypes } from 'react'
+import ProjectForm from './ProjectForm'
 import Project from './Project'
 
 class Projects extends Component {
+  static propTypes = {
+    addProject: PropTypes.func.isRequired,
+    addTask: PropTypes.func.isRequired,
+    startTask: PropTypes.func.isRequired,
+    projects: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      tasks: PropTypes.shape({
+        count: PropTypes.number.isRequired,
+        todo: PropTypes.number.isRequired,
+        inProgress: PropTypes.number.isRequired,
+        list: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          state: PropTypes.string.isRequired
+        }))
+      })
+    })).isRequired
+  }
+
   render() {
     const { addProject, addTask, startTask, projects } = this.props
     let projectList = projects.map(project =>
@@ -12,23 +33,11 @@ class Projects extends Component {
         {...project}
       />
     )
-    let input
+    //For now we won't show all the projects
     let allProjects = (
       <div>
         <h1>Project Tracker</h1>
-        <div>
-          <form onSubmit={e => {
-            e.preventDefault()
-            if (!input.value.trim()) {
-              return
-            }
-            addProject(input.value)
-            input.value = ''
-          }}>
-            <input ref={node => { input = node }} />
-            <button type='submit'>Add Project</button>
-          </form>
-        </div>
+        <ProjectForm addProject={addProject}/>
         {projectList}
       </div>
     )
@@ -38,26 +47,6 @@ class Projects extends Component {
       </div>
     )
   }
-}
-
-Projects.propTypes = {
-  addProject: PropTypes.func.isRequired,
-  addTask: PropTypes.func.isRequired,
-  startTask: PropTypes.func.isRequired,
-  projects: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    tasks: PropTypes.shape({
-      count: PropTypes.number.isRequired,
-      todo: PropTypes.number.isRequired,
-      inProgress: PropTypes.number.isRequired,
-      list: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        state: PropTypes.string.isRequired
-      }))
-    })
-  })).isRequired
 }
 
 export default Projects

@@ -1,23 +1,24 @@
 module.exports = function () {
-  this.When(/^I add a task '(.*)'$/, function (name) {
-    return this.driver
-               .findElement({ css: 'input' })
-               .sendKeys(name, this.webdriver.Key.ENTER)
+  this.When(/^I add a task '(.*)'$/, function (name, done) {
+    this.wrapper.find('input').simulate('change', {target: {value: name}});
+    this.wrapper.find('.new-task').simulate('click');
+    done();
   })
 
-  this.When(/^I (.*) the task$/, function (action) {
-    let state
+  this.When(/^I (.*) the task$/, function (action, done) {
+    let state;
     if (action === 'start') {
       state = 'to-do'
     }
-    return this.driver
-               .findElement({ css: 'h6.' + state })
-               .findElement({ css: 'button' }).click()
+    this.wrapper.find('.' + state).last()
+                .find('button').simulate('click');
+    done();
   })
 
-  this.Then(/^I see the task '(.*)' under '(.*)'$/, function (text, heading) {
-    let state = heading.toLowerCase().split(' ').join('-')
-    let name = this.driver.findElement({ css: 'h6.' + state }).getText()
-    return this.expect(name).to.eventually.have.string(text)
+  this.Then(/^I see the task '(.*)' under '(.*)'$/, function (text, heading, done) {
+    let state = heading.toLowerCase().split(' ').join('-');
+    let name = this.wrapper.find('.' + state).last().text();
+    this.expect(name).to.have.string(text);
+    done();
   })
 }
