@@ -1,12 +1,11 @@
 import uuid from 'uuid4'
-import _ from 'lodash'
 import { ADD_PROJECT, ADD_TASK, START_TASK } from '../actions'
 
 const calculateCounters = (list) => {
   return {
     count: list.length,
-    todo: _.filter(list, t => t.state === 'to-do').length,
-    inProgress: _.filter(list, t => t.state === 'in-progress').length,
+    todo: list.filter(t => t.state === 'to-do').length,
+    inProgress: list.filter(t => t.state === 'in-progress').length,
     list: list
   }
 }
@@ -23,9 +22,7 @@ const task = (state, action) => {
       if (state.id !== action.taskId) {
         return state
       }
-      return Object.assign({}, state, {
-        state: 'in-progress'
-      })
+      return { ...state, state: 'in-progress' }
     default:
       return state
   }
@@ -58,9 +55,7 @@ const project = (state, action) => {
       if (state.id !== action.id) {
         return state
       }
-      return Object.assign({}, state, {
-        tasks: tasks(state.tasks, action)
-      })
+      return { ...state, tasks: tasks(state.tasks, action) }
     default:
       return state
   }
