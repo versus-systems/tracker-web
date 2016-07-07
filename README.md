@@ -52,7 +52,7 @@ There is a unit test framework setup using Mocha, however currently there are no
 
 There is a small Cucumber feature suite set up with several features described.
 
-* `bin/cucumber` - Run the cucumber features in another terminal
+* `npm run test-feature` - Run the cucumber features
 
 ### Interacting with the system
 
