@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import {resolve} from 'path';
+import { resolve } from 'path';
 import defaultConfig from './webpack.default';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   resolve: {
     root: [
       ...defaultConfig.resolve.root,
-      resolve(__dirname, '..', 'test')
-    ]
-  }
+      resolve(__dirname, '..', 'test'),
+    ],
+  },
 };

@@ -14,13 +14,13 @@ export default {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    })
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
   ],
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:' + port,
+    `webpack-dev-server/client?http://0.0.0.0:${port}`,
     'webpack/hot/dev-server',
-    ...defaultConfig.entry
-  ]
+    ...defaultConfig.entry,
+  ],
 };

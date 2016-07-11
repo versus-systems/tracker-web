@@ -8,12 +8,12 @@ export default {
   devtool: 'source-map',
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
-      output: {comments: false}
+      output: { comments: false },
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  ]
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+  ],
 };

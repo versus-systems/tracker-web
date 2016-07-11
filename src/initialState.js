@@ -1,4 +1,4 @@
-import uuid from 'uuid4'
+import uuid from 'uuid4';
 
 const initialState = {
   projects: [
@@ -9,8 +9,8 @@ const initialState = {
         count: 0,
         todo: 0,
         inProgress: 0,
-        list: []
-      }
+        list: [],
+      },
     },
     {
       id: uuid(),
@@ -19,10 +19,10 @@ const initialState = {
         count: 0,
         todo: 0,
         inProgress: 0,
-        list: []
-      }
-    }
-  ]
-}
+        list: [],
+      },
+    },
+  ],
+};
 
-export default initialState
+export default initialState;
