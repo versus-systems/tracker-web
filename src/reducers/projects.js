@@ -1,11 +1,11 @@
-import uuid from 'uuid4';
-import { ADD_PROJECT, ADD_TASK, START_TASK } from '../actions';
+import uuid from "uuid4";
+import { ADD_PROJECT, ADD_TASK, START_TASK } from "../actions";
 
 const calculateCounters = (list) =>
   ({
     count: list.length,
-    todo: list.filter(t => t.state === 'to-do').length,
-    inProgress: list.filter(t => t.state === 'in-progress').length,
+    todo: list.filter(t => t.state === "to-do").length,
+    inProgress: list.filter(t => t.state === "in-progress").length,
     list,
   });
 
@@ -15,13 +15,13 @@ const task = (state, action) => {
       return {
         id: uuid(),
         name: action.task.name,
-        state: 'to-do',
+        state: "to-do",
       };
     case START_TASK:
       if (state.id !== action.taskId) {
         return state;
       }
-      return { ...state, state: 'in-progress' };
+      return { ...state, state: "in-progress" };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
-export const ADD_PROJECT = 'ADD_PROJECT';
-export const ADD_TASK = 'ADD_TASK';
-export const START_TASK = 'START_TASK';
+export const ADD_PROJECT = "ADD_PROJECT";
+export const ADD_TASK = "ADD_TASK";
+export const START_TASK = "START_TASK";
 
 export function addProject(name) {
   return {

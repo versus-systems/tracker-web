@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from "react";
 
 class ProjectForm extends Component {
 
@@ -8,7 +8,7 @@ class ProjectForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { name: '' };
+    this.state = { name: "" };
     this.setName = this.setName.bind(this);
     this.submitProject = this.submitProject.bind(this);
   }
@@ -21,7 +21,7 @@ class ProjectForm extends Component {
     e.preventDefault();
     if (!this.state.name) { return; }
     this.props.addProject(this.state.name);
-    this.setState({ name: '' });
+    this.setState({ name: "" });
   }
 
   render() {

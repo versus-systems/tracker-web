@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-// import ProjectForm from './ProjectForm';
-import Project from './Project';
+import React, { PropTypes } from "react";
+// import ProjectForm from "./ProjectForm";
+import Project from "./Project";
 
 const Projects = ({ addTask, startTask, projects }) => {
   const projectList = projects.map(project =>
@@ -10,7 +10,7 @@ const Projects = ({ addTask, startTask, projects }) => {
       startTask={startTask}
       {...project}
     />);
-  // For now we won't show all the projects
+  // For now we won"t show all the projects
   // let allProjects = (
   //   <div>
   //     <h1>Project Tracker</h1>

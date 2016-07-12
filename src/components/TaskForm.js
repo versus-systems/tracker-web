@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from "react";
 
 class TaskForm extends Component {
 
@@ -9,7 +9,7 @@ class TaskForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { name: '' };
+    this.state = { name: "" };
     this.setName = this.setName.bind(this);
     this.submitTask = this.submitTask.bind(this);
   }
@@ -22,7 +22,7 @@ class TaskForm extends Component {
     e.preventDefault();
     if (!this.state.name) { return; }
     this.props.addTask(this.props.projectId, this.state.name);
-    this.setState({ name: '' });
+    this.setState({ name: "" });
   }
 
   render() {

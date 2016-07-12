@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-import TaskForm from './TaskForm';
-import Task from './Task';
+import React, { PropTypes } from "react";
+import TaskForm from "./TaskForm";
+import Task from "./Task";
 
 const Project = ({ addTask, startTask, id, name, tasks }) => {
   const taskDOM = (task) =>
@@ -10,8 +10,8 @@ const Project = ({ addTask, startTask, id, name, tasks }) => {
       projectId={id}
       {...task}
     />);
-  let todoList = tasks.list.filter(t => t.state === 'to-do').map(taskDOM);
-  let inProgressList = tasks.list.filter(t => t.state === 'in-progress').map(taskDOM);
+  let todoList = tasks.list.filter(t => t.state === "to-do").map(taskDOM);
+  let inProgressList = tasks.list.filter(t => t.state === "in-progress").map(taskDOM);
   return (
     <div>
       <h3>{name}</h3>

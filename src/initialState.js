@@ -1,10 +1,10 @@
-import uuid from 'uuid4';
+import uuid from "uuid4";
 
 const initialState = {
   projects: [
     {
       id: uuid(),
-      name: 'Sample Project',
+      name: "Sample Project",
       tasks: {
         count: 0,
         todo: 0,
@@ -14,7 +14,7 @@ const initialState = {
     },
     {
       id: uuid(),
-      name: 'Another Project',
+      name: "Another Project",
       tasks: {
         count: 0,
         todo: 0,

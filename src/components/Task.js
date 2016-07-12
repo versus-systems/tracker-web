@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from "react";
 
 const Task = ({ startTask, projectId, id, name, state }) => {
-  let actionButton = '';
-  if (state === 'to-do') {
+  let actionButton = "";
+  if (state === "to-do") {
     actionButton = (
       <button
         onClick={e => {
