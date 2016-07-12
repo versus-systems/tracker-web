@@ -1,30 +1,29 @@
-import React, { PropTypes } from 'react'
-import ProjectForm from './ProjectForm'
-import Project from './Project'
+import React, { PropTypes } from "react";
+// import ProjectForm from "./ProjectForm";
+import Project from "./Project";
 
-const Projects = ({ addProject, addTask, startTask, projects }) => {
-  let projectList = projects.map(project =>
-      <Project
-        key={project.id}
-        addTask={addTask}
-        startTask={startTask}
-        {...project}
-      />
-    )
-    //For now we won't show all the projects
-    let allProjects = (
-      <div>
-        <h1>Project Tracker</h1>
-        <ProjectForm addProject={addProject}/>
-        {projectList}
-      </div>
-    )
-    return (
-      <div>
-        {projectList[0]}
-      </div>
-    )
-}
+const Projects = ({ addTask, startTask, projects }) => {
+  const projectList = projects.map(project =>
+    <Project
+      key={project.id}
+      addTask={addTask}
+      startTask={startTask}
+      {...project}
+    />);
+  // For now we won"t show all the projects
+  // let allProjects = (
+  //   <div>
+  //     <h1>Project Tracker</h1>
+  //     <ProjectForm addProject={addProject}/>
+  //     {projectList}
+  //   </div>
+  // );
+  return (
+    <div>
+      {projectList[0]}
+    </div>
+  );
+};
 
 Projects.propTypes = {
   addProject: PropTypes.func.isRequired,
@@ -40,10 +39,10 @@ Projects.propTypes = {
       list: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        state: PropTypes.string.isRequired
-      }))
-    })
-  })).isRequired
-}
+        state: PropTypes.string.isRequired,
+      })),
+    }),
+  })).isRequired,
+};
 
-export default Projects
+export default Projects;
