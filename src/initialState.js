@@ -12,16 +12,6 @@ const initialState = {
         list: [],
       },
     },
-    {
-      id: uuid(),
-      name: "Another Project",
-      tasks: {
-        count: 0,
-        todo: 0,
-        inProgress: 0,
-        list: [],
-      },
-    },
   ],
 };
 

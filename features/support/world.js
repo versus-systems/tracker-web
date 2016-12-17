@@ -5,7 +5,7 @@ import jsdom from "jsdom";
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
 import { Provider } from "react-redux";
-import App from "../../src/containers/App";
+import App from "../../src/App";
 import configureStore from "../../src/store/configureStore";
 import initialState from "../../src/initialState";
 const store = configureStore(initialState);
