@@ -17,6 +17,14 @@ export default {
         loaders: ["babel"],
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      },
     ],
   },
   resolve: {
