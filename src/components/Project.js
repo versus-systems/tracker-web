@@ -24,11 +24,11 @@ const Project = ({ addTask, startTask, completeTask, id, name, tasks }) => {
             <ProgressBar count={tasks.count} chartTotal={charts[key]} name={key} key={key}/>
         ))}
       </div>
-      <div className="section-title">Create New Task</div>
+      <div className="section-title create-new-tasks-label">Create New Task</div>
         <TaskForm projectId={id} addTask={addTask} />
-      <div className="section-title">In Progress Tasks</div>
+      <div className="section-title progress-tasks-label">In Progress Tasks</div>
         {inProgressList}
-      <div className="section-title">Todo Tasks</div>
+      <div className="section-title to-do-tasks-label">Todo Tasks</div>
         {todoList}
     </div>
   );
