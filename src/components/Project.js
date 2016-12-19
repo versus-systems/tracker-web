@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import TaskForm from "./TaskForm";
 import Task from "./Task";
+import ProgressBar from "./ProgressBar"
 
 const Project = ({ addTask, startTask, id, name, tasks }) => {
   const taskDOM = (task) =>
@@ -12,17 +13,21 @@ const Project = ({ addTask, startTask, id, name, tasks }) => {
     />);
   let todoList = tasks.list.filter(t => t.state === "to-do").map(taskDOM);
   let inProgressList = tasks.list.filter(t => t.state === "in-progress").map(taskDOM);
+  let charts = {complete: tasks.count-tasks.inProgress-tasks.todo, inProgress: tasks.inProgress, todo: tasks.todo}
   return (
     <div>
-      <h3>{name}</h3>
-      <div>
-        <p>Tasks: {tasks.count}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
+      <h3>{name} Todo List</h3>
+      <h6>Task list for the {name} Project</h6>
+      <div className='progress-bars-container'>
+        {Object.keys(charts).map(key => (
+            <ProgressBar count={tasks.count} chartTotal={charts[key]} name={key} key={key}/>
+        ))}
       </div>
       <TaskForm projectId={id} addTask={addTask} />
-      <h4 className="to-do">To Do</h4>
-      {todoList}
-      <h4 className="in-progress">In Progress</h4>
+      <h4 className="in-progress">In Progress Tasks</h4>
       {inProgressList}
+      <h4 className="to-do">To Do Tasks</h4>
+      {todoList}
     </div>
   );
 };

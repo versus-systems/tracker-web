@@ -1,0 +1,68 @@
+@import '_colors.scss';
+
+.progress-bars-container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+.progress-bar-container {
+  border: 1px solid $light-gray;
+  width: 10rem;
+  padding: 1rem 3rem;
+}
+.progress-bar-display-name {
+  color: $dark-gray;
+  text-transform: capitalize;
+  font-weight: 100;
+}
+.CircularProgressbar {
+  width: 100px;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: $light-gray;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: $dark-gray;
+  font-size: 1rem;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.complete {
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: $green;
+  }
+  .progress-bar-number {
+    color: $green;
+  }
+}
+
+.inProgress {
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: $blue;
+  }
+  .progress-bar-number {
+    color: $blue;
+  }
+}
+
+.todo {
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: $red;
+  }
+  .progress-bar-number {
+    color: $red;
+  }
+}
