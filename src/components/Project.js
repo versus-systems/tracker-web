@@ -3,11 +3,12 @@ import TaskForm from "./TaskForm";
 import Task from "./Task";
 import ProgressBar from "./ProgressBar"
 
-const Project = ({ addTask, startTask, id, name, tasks }) => {
+const Project = ({ addTask, startTask, completeTask, id, name, tasks }) => {
   const taskDOM = (task) =>
     (<Task
       key={task.id}
       startTask={startTask}
+      completeTask={completeTask}
       projectId={id}
       {...task}
     />);
@@ -16,18 +17,19 @@ const Project = ({ addTask, startTask, id, name, tasks }) => {
   let charts = {complete: tasks.count-tasks.inProgress-tasks.todo, inProgress: tasks.inProgress, todo: tasks.todo}
   return (
     <div>
-      <h3>{name} Todo List</h3>
-      <h6>Task list for the {name} Project</h6>
+      <div className="main-title">{name} Todo List</div>
+      <div className="subtitle">Task list for the {name} Project</div>
       <div className='progress-bars-container'>
         {Object.keys(charts).map(key => (
             <ProgressBar count={tasks.count} chartTotal={charts[key]} name={key} key={key}/>
         ))}
       </div>
-      <TaskForm projectId={id} addTask={addTask} />
-      <h4 className="in-progress">In Progress Tasks</h4>
-      {inProgressList}
-      <h4 className="to-do">To Do Tasks</h4>
-      {todoList}
+      <div className="section-title">Create New Task</div>
+        <TaskForm projectId={id} addTask={addTask} />
+      <div className="section-title">In Progress Tasks</div>
+        {inProgressList}
+      <div className="section-title">Todo Tasks</div>
+        {todoList}
     </div>
   );
 };
@@ -35,6 +37,7 @@ const Project = ({ addTask, startTask, id, name, tasks }) => {
 Project.propTypes = {
   addTask: PropTypes.func.isRequired,
   startTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   tasks: PropTypes.shape({

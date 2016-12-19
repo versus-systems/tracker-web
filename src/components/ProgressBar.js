@@ -14,8 +14,11 @@ const ProgressBar = ({ count, chartTotal, name }) => {
   let displayNameText = displayName(name)
   return (
     <div className={name + " progress-bar-container"}>
-      <div><span className="progress-bar-number">{chartTotal}</span><span className='progress-bar-display-name'> {displayNameText}</span></div>
-      <CircularProgressbar percentage={chartTotal/count * 100} />
+      <div className="progress-bar-label">
+        <div className="progress-bar-number">{chartTotal}</div>
+        <div className='progress-bar-display-name gray-notes'> {displayNameText}</div>
+      </div>
+      <CircularProgressbar strokeWidth={15} percentage={Math.floor(chartTotal/count * 100)} />
     </div>
   );
 };

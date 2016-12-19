@@ -1,5 +1,5 @@
 import uuid from "uuid4";
-import { ADD_PROJECT, ADD_TASK, START_TASK } from "../actions";
+import { ADD_PROJECT, ADD_TASK, START_TASK, COMPLETE_TASK } from "../actions";
 
 const calculateCounters = (list) =>
   ({
@@ -22,6 +22,11 @@ const task = (state, action) => {
         return state;
       }
       return { ...state, state: "in-progress" };
+    case COMPLETE_TASK:
+      if (state.id !== action.taskId) {
+        return state;
+      }
+      return { ...state, state: "complete" };
     default:
       return state;
   }
@@ -35,6 +40,8 @@ const tasks = (state, action) => {
         task(undefined, action),
       ]);
     case START_TASK:
+      return calculateCounters(state.list.map(t => task(t, action)));
+    case COMPLETE_TASK:
       return calculateCounters(state.list.map(t => task(t, action)));
     default:
       return state;
@@ -55,6 +62,11 @@ const project = (state, action) => {
         return state;
       }
       return { ...state, tasks: tasks(state.tasks, action) };
+    case COMPLETE_TASK:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return { ...state, tasks: tasks(state.tasks, action) };
     default:
       return state;
   }
@@ -69,6 +81,8 @@ const projects = (state = [], action) => {
       ];
     case ADD_TASK:
     case START_TASK:
+      return state.map(p => project(p, action));
+    case COMPLETE_TASK:
       return state.map(p => project(p, action));
     default:
       return state;

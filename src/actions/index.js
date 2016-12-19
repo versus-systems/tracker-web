@@ -1,6 +1,7 @@
 export const ADD_PROJECT = "ADD_PROJECT";
 export const ADD_TASK = "ADD_TASK";
 export const START_TASK = "START_TASK";
+export const COMPLETE_TASK = "COMPLETE_TASK";
 
 export function addProject(name) {
   return {
@@ -22,6 +23,14 @@ export function addTask(projectId, name) {
 export function startTask(projectId, taskId) {
   return {
     type: START_TASK,
+    id: projectId,
+    taskId,
+  };
+}
+
+export function completeTask(projectId, taskId) {
+  return {
+    type: COMPLETE_TASK,
     id: projectId,
     taskId,
   };

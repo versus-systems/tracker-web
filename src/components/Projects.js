@@ -2,12 +2,13 @@ import React, { PropTypes } from "react";
 // import ProjectForm from "./ProjectForm";
 import Project from "./Project";
 
-const Projects = ({ addTask, startTask, projects }) => {
+const Projects = ({ addTask, startTask, completeTask, projects }) => {
   const projectList = projects.map(project =>
     <Project
       key={project.id}
       addTask={addTask}
       startTask={startTask}
+      completeTask={completeTask}
       {...project}
     />);
   // For now we won"t show all the projects
@@ -19,7 +20,7 @@ const Projects = ({ addTask, startTask, projects }) => {
   //   </div>
   // );
   return (
-    <div>
+    <div className='projects-container'>
       {projectList[0]}
     </div>
   );

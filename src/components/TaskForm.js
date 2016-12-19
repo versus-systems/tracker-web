@@ -27,9 +27,9 @@ class TaskForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='task-form-container'>
         <input value={this.state.name} onChange={this.setName} />
-        <button className="new-task" onClick={this.submitTask}>Add Task</button>
+        <button className="new-task" onClick={this.submitTask}>Create</button>
       </div>
     );
   }

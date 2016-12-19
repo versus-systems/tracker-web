@@ -1,0 +1,24 @@
+@import '_colors.scss';
+
+.task-item-container {
+  display: flex;
+  margin-bottom: .75rem;
+}
+.task-label-container {
+  flex: 1;
+}
+.task-button-container {
+  flex: 4;
+}
+.task-name {
+}
+.task-notes {
+  margin-top: .25rem;
+}
+.task-button-container {
+  margin-top: .4rem;
+  .button {
+    margin-top: .6rem;
+    margin-left: .4rem;
+  }
+}
