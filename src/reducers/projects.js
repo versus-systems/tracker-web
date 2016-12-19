@@ -1,14 +1,13 @@
-import uuid from 'uuid4'
-import { ADD_PROJECT, ADD_TASK, START_TASK } from '../actions'
+import uuid from "uuid4";
+import { ADD_PROJECT, ADD_TASK, START_TASK, COMPLETE_TASK } from "../actions";
 
-const calculateCounters = (list) => {
-  return {
+const calculateCounters = (list) =>
+  ({
     count: list.length,
-    todo: list.filter(t => t.state === 'to-do').length,
-    inProgress: list.filter(t => t.state === 'in-progress').length,
-    list: list
-  }
-}
+    todo: list.filter(t => t.state === "to-do").length,
+    inProgress: list.filter(t => t.state === "in-progress").length,
+    list,
+  });
 
 const task = (state, action) => {
   switch (action.type) {
@@ -16,31 +15,39 @@ const task = (state, action) => {
       return {
         id: uuid(),
         name: action.task.name,
-        state: 'to-do'
-      }
+        description: action.task.description,
+        state: "to-do",
+      };
     case START_TASK:
       if (state.id !== action.taskId) {
-        return state
+        return state;
       }
-      return { ...state, state: 'in-progress' }
+      return { ...state, state: "in-progress" };
+    case COMPLETE_TASK:
+      if (state.id !== action.taskId) {
+        return state;
+      }
+      return { ...state, state: "complete" };
     default:
-      return state
+      return state;
   }
-}
+};
 
 const tasks = (state, action) => {
   switch (action.type) {
     case ADD_TASK:
       return calculateCounters([
         ...state.list,
-        task(undefined, action)
-      ])
+        task(undefined, action),
+      ]);
     case START_TASK:
-      return calculateCounters(state.list.map(t => task(t, action)))
+      return calculateCounters(state.list.map(t => task(t, action)));
+    case COMPLETE_TASK:
+      return calculateCounters(state.list.map(t => task(t, action)));
     default:
-      return state
+      return state;
   }
-}
+};
 
 const project = (state, action) => {
   switch (action.type) {
@@ -48,32 +55,39 @@ const project = (state, action) => {
       return {
         id: uuid(),
         name: action.name,
-        tasks: calculateCounters([])
-      }
+        tasks: calculateCounters([]),
+      };
     case ADD_TASK:
     case START_TASK:
       if (state.id !== action.id) {
-        return state
+        return state;
       }
-      return { ...state, tasks: tasks(state.tasks, action) }
+      return { ...state, tasks: tasks(state.tasks, action) };
+    case COMPLETE_TASK:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return { ...state, tasks: tasks(state.tasks, action) };
     default:
-      return state
+      return state;
   }
-}
+};
 
 const projects = (state = [], action) => {
   switch (action.type) {
     case ADD_PROJECT:
       return [
         ...state,
-        project(undefined, action)
-      ]
+        project(undefined, action),
+      ];
     case ADD_TASK:
     case START_TASK:
-      return state.map(p => project(p, action))
+      return state.map(p => project(p, action));
+    case COMPLETE_TASK:
+      return state.map(p => project(p, action));
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default projects
+export default projects;

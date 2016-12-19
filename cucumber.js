@@ -1,3 +1,3 @@
 module.exports = {
-  'default': '--compiler js:babel-core/register'
-}
+  default: "--compiler js:babel-core/register",
+};

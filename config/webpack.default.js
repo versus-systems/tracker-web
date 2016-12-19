@@ -1,33 +1,41 @@
 /* eslint-env node */
 
-import {resolve} from 'path';
+import { resolve } from "path";
 
 export default {
   entry: [
-    './src/main'
+    "./src/main",
   ],
   output: {
-    path: './public',
-    filename: 'bundle.js'
+    path: "./public",
+    filename: "bundle.js",
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
-        exclude: /node_modules/
-      }
-    ]
+        loaders: ["babel"],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"],
+      },
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader",
+      },
+    ],
   },
   resolve: {
     root: [
-      resolve(__dirname, '..', 'src')
-    ]
+      resolve(__dirname, "..", "src"),
+    ],
   },
   devServer: {
-    contentBase: './public',
+    contentBase: "./public",
     noInfo: true,
     inline: true,
-    hot: true
-  }
+    hot: true,
+  },
 };

@@ -1,36 +1,47 @@
-import { PropTypes } from 'react';
-import TaskForm from './TaskForm'
-import Task from './Task'
+import React, { PropTypes } from "react";
+import TaskForm from "./TaskForm";
+import Task from "./Task";
+import ProgressBar from "./ProgressBar";
 
-const Project = ({ addTask, startTask, id, name, tasks }) => {
-  const taskDOM = (task) => {
-      return <Task
-              key={task.id}
-              startTask={startTask}
-              projectId={id}
-              {...task}
-            />
-    }
-    let todoList = tasks.list.filter(t => t.state === 'to-do').map(taskDOM)
-    let inProgressList = tasks.list.filter(t => t.state === 'in-progress').map(taskDOM)
-    return (
-      <div>
-        <h3>{name}</h3>
-        <div>
-          <p>Tasks: {tasks.count}, To Do: {tasks.todo}, In Progress: {tasks.inProgress}</p>
-        </div>
-        <TaskForm projectId={id} addTask={addTask}/>
-        <h4 className='to-do'>To Do</h4>
-        {todoList}
-        <h4 className='in-progress'>In Progress</h4>
-        {inProgressList}
+const Project = ({ addTask, startTask, completeTask, id, name, tasks }) => {
+  const taskDOM = (task) =>
+    (<Task
+      key={task.id}
+      startTask={startTask}
+      completeTask={completeTask}
+      projectId={id}
+      {...task}
+    />);
+  let todoList = tasks.list.filter(t => t.state === "to-do").map(taskDOM);
+  let inProgressList = tasks.list.filter(t => t.state === "in-progress").map(taskDOM);
+  const charts = {
+    complete: tasks.count - tasks.inProgress - tasks.todo,
+    inProgress: tasks.inProgress,
+    todo: tasks.todo,
+  };
+  return (
+    <div>
+      <div className="main-title">{name} Todo List</div>
+      <div className="subtitle">Task list for the {name} Project</div>
+      <div className="progress-bars-container">
+        {Object.keys(charts).map(key => (
+          <ProgressBar count={tasks.count} chartTotal={charts[key]} name={key} key={key} />
+        ))}
       </div>
-    )
-}
+      <div className="section-title create-new-tasks-label">Create New Task</div>
+      <TaskForm projectId={id} addTask={addTask} />
+      <div className="section-title progress-tasks-label">In Progress Tasks</div>
+        {inProgressList}
+      <div className="section-title to-do-tasks-label">Todo Tasks</div>
+        {todoList}
+    </div>
+  );
+};
 
 Project.propTypes = {
   addTask: PropTypes.func.isRequired,
   startTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   tasks: PropTypes.shape({
@@ -40,9 +51,9 @@ Project.propTypes = {
     list: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      state: PropTypes.string.isRequired
-    }))
-  })
-}
+      state: PropTypes.string.isRequired,
+    })),
+  }),
+};
 
 export default Project;
