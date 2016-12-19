@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-require('../../styles/taskForm.scss')
+require("../../styles/taskForm.scss");
 
 class TaskForm extends Component {
 
@@ -33,11 +33,23 @@ class TaskForm extends Component {
 
   render() {
     return (
-      <div className='task-form-container'>
+      <div className="task-form-container">
         <div className="input-label">Task Name</div>
-        <div><input value={this.state.name} onChange={this.setName} placeholder="Name of the new task"/></div>
+        <div>
+          <input
+            value={this.state.name}
+            onChange={this.setName}
+            placeholder="Name of the new task"
+          />
+        </div>
         <div className="input-label">Task Description</div>
-        <div><input value={this.state.description} onChange={this.setDescription} placeholder="Description for the new task"/></div>
+        <div>
+          <input
+            value={this.state.description}
+            onChange={this.setDescription}
+            placeholder="Description for the new task"
+          />
+        </div>
         <button className="new-task" onClick={this.submitTask}>Create</button>
       </div>
     );

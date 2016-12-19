@@ -19,11 +19,11 @@ export default {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ["style", "css", "sass"],
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: "style-loader!css-loader",
       },
     ],
   },

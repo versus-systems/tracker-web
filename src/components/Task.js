@@ -1,11 +1,12 @@
 import React, { PropTypes } from "react";
-require('../../styles/task.scss')
+require("../../styles/task.scss");
 
 const Task = ({ startTask, completeTask, projectId, id, name, state, description }) => {
   let actionButton = "";
   if (state === "to-do") {
     actionButton = (
-      <button className="actionButton"
+      <button
+        className="actionButton"
         onClick={e => {
           e.preventDefault();
           startTask(projectId, id);
@@ -15,7 +16,8 @@ const Task = ({ startTask, completeTask, projectId, id, name, state, description
   }
   if (state === "in-progress") {
     actionButton = (
-      <button className="actionButton"
+      <button
+        className="actionButton"
         onClick={e => {
           e.preventDefault();
           completeTask(projectId, id);
@@ -26,7 +28,7 @@ const Task = ({ startTask, completeTask, projectId, id, name, state, description
   return (
     <div className="task-item-container">
       <div className="task-label-container">
-        <div className={"subtitle task-name" + state}>{name}</div>
+        <div className="subtitle task-name">{name}</div>
         <div className="gray-notes task-notes">{description} </div>
       </div>
       <div className="task-button-container">

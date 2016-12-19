@@ -20,7 +20,7 @@ const Projects = ({ addTask, startTask, completeTask, projects }) => {
   //   </div>
   // );
   return (
-    <div className='projects-container'>
+    <div className="projects-container">
       {projectList[0]}
     </div>
   );
@@ -30,6 +30,7 @@ Projects.propTypes = {
   addProject: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   startTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
