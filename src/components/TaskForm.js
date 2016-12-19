@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+require('../../styles/taskForm.scss')
 
 class TaskForm extends Component {
 
@@ -9,8 +10,9 @@ class TaskForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { name: "" };
+    this.state = { name: "", description: "" };
     this.setName = this.setName.bind(this);
+    this.setDescription = this.setDescription.bind(this);
     this.submitTask = this.submitTask.bind(this);
   }
 
@@ -18,17 +20,24 @@ class TaskForm extends Component {
     this.setState({ name: e.target.value });
   }
 
+  setDescription(e) {
+    this.setState({ description: e.target.value });
+  }
+
   submitTask(e) {
     e.preventDefault();
     if (!this.state.name) { return; }
-    this.props.addTask(this.props.projectId, this.state.name);
-    this.setState({ name: "" });
+    this.props.addTask(this.props.projectId, this.state);
+    this.setState({ name: "", description: "" });
   }
 
   render() {
     return (
       <div className='task-form-container'>
-        <input value={this.state.name} onChange={this.setName} />
+        <div className="input-label">Task Name</div>
+        <div><input value={this.state.name} onChange={this.setName} placeholder="Name of the new task"/></div>
+        <div className="input-label">Task Description</div>
+        <div><input value={this.state.description} onChange={this.setDescription} placeholder="Description for the new task"/></div>
         <button className="new-task" onClick={this.submitTask}>Create</button>
       </div>
     );

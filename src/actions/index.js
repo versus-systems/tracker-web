@@ -10,12 +10,13 @@ export function addProject(name) {
   };
 }
 
-export function addTask(projectId, name) {
+export function addTask(projectId, state) {
   return {
     type: ADD_TASK,
     id: projectId,
     task: {
-      name,
+      name: state.name,
+      description: state.description,
     },
   };
 }
