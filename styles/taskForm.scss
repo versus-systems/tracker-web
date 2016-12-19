@@ -1,0 +1,26 @@
+@import '_colors.scss';
+
+input {
+  padding: .2rem .5rem .2rem .5rem;
+  margin-bottom: .75rem;
+  height: 1.1rem;
+  border-radius: 2px;
+  border: 1px solid $gray-lines;
+  width: 25rem;
+}
+
+input::-webkit-input-placeholder {
+  color: black;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+  color: black;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+  color: black;
+}
+
+input:-ms-input-placeholder {
+  color: black;
+}

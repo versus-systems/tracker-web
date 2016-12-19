@@ -1,0 +1,33 @@
+@import '_colors.scss';
+
+.create-new-tasks-label {
+  margin: 1rem 0 .9rem 0;
+}
+
+.progress-tasks-label {
+  margin: 1.75rem 0 .9rem 0;
+}
+
+.to-do-tasks-label {
+  margin-top: 4rem;
+}
+.task-item-container {
+  display: flex;
+  margin-bottom: .75rem;
+}
+.task-label-container {
+  flex: 1;
+}
+.task-button-container {
+  flex: 3.5;
+}
+.task-notes {
+  margin-top: .25rem;
+}
+.task-button-container {
+  margin-top: .4rem;
+  .button {
+    margin-top: .6rem;
+    margin-left: .4rem;
+  }
+}
