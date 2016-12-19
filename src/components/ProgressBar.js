@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import CircularProgressbar from 'react-circular-progressbar'
 
-const chartStyles = require('../../styles/progressBar.scss')
+require('../../styles/progressBar.scss')
 
 const displayName = (name) => {
   if (name === 'inProgress') {

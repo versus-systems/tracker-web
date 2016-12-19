@@ -5,6 +5,8 @@ import configureStore from "./store/configureStore";
 import initialState from "./initialState";
 import App from "./containers/App";
 
+require('../styles/global.scss');
+
 const store = configureStore(initialState);
 const rootElement = document.getElementById("App");
 
