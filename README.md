@@ -12,7 +12,7 @@ This application is very incomplete and as such has plenty of room for you to ad
 
 Inside the `design` folder is a picture of the project dashboard we would like you to build.
 
-The project has been setup with React and Material-UI and we would like you to make the dashboard similar to the picture.
+The project has been setup with React and Material-UI and we would like you to make the dashboard similar to the picture in the /design folder.
 
 ## Setup
 
