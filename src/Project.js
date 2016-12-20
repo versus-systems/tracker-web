@@ -88,9 +88,9 @@ class Project extends React.Component {
     return (
       <div>
         <p>
-          <span className="tasks">Tasks: {count},</span>
-          <span className="to-dos">To Do: {todo},</span>
-          <span classNAme="in-progress">In Progress: {inProgress}</span>
+          <span className="tasks">Tasks: {count}, </span>
+          <span className="to-dos">To Do: {todo}, </span>
+          <span className="in-progress">In Progress: {inProgress}</span>
         </p>
         <TextField
           value={this.state.input}
