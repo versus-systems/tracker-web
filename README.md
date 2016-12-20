@@ -12,17 +12,7 @@ This application is very incomplete and as such has plenty of room for you to ad
 
 Inside the `design` folder is a picture of the project dashboard we would like you to build.
 
-The project has been setup with React and Redux and we would like you to make the dasboard look and feel as pictured.
-
-### Style Guide
-#### Font
-* Roboto
-
-#### Colors
-* Red: #C53E3E
-* Green: #3EC556
-* Blue: #3E74C5
-
+The project has been setup with React and Material-UI and we would like you to make the dashboard similar to the picture.
 
 ## Setup
 
@@ -30,7 +20,6 @@ The project has been setup with React and Redux and we would like you to make th
 
 * Node 6
 * React 15
-* Redux 3.5
 
 If you are on a Mac and don't have Node installed yet:
 
@@ -44,23 +33,13 @@ Though this is a front end web project with no "server" component, it does use N
 
 * `npm install`
 
-### Running Tests
-
-There is a unit test framework setup using Mocha, however currently there are no unit tests.
-
-* `npm run test`
-
-There is a small Cucumber feature suite set up with several features described.
-
-* `npm run features` - Run the cucumber features
-
 ### Interacting with the system
 
-* `npm run start` - Run the webpack dev server
+* `npm run start` - Run the webpack dev server along with lint and test watch
 
 ## What's Expected
 
-As a general rule this follows the format of many common React + Redux applications. You should attempt to follow the conventions of the project, though divergence is acceptable with good reason.
+As a general rule this follows the format of many common React. You should attempt to follow the conventions of the project, though divergence is acceptable with good reason.
 
 You should feel free to add any libraries or tools you feel are necessary to complete the feature you have been asked to add.
 
