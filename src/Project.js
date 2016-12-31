@@ -7,31 +7,30 @@ class Project extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
       todo: 0,
       inProgress: 0,
+      completed: 0,
       list: [],
       name: "",
-      description: ""
+      description: "",
     };
 
     this.onChange = this.onChange.bind(this);
     this.addTask = this.addTask.bind(this);
-    this.startTask = this.startTask.bind(this);
+    this.incrementState = this.incrementState.bind(this);
   }
 
   onChange(event) {
-    let name = event.target.name
-    let value = event.target.value
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState({ [name]: value });
   }
 
   addTask() {
-    let { count, todo } = this.state;
     const list = [...this.state.list];
 
     list.push({
-      state: "to-do",
+      state: 0,
       name: this.state.name,
       description: this.state.description,
       id: uuid(),
@@ -41,63 +40,69 @@ class Project extends React.Component {
       list,
       name: "",
       description: "",
-      count: ++count,
-      todo: ++todo,
+    });
+
+    this.updateCounts(0);
+  }
+
+  incrementState(item) {
+    const list = this.state.list;
+    const task = item;
+
+    if (task.state > 1) return;
+    task.state++;
+    this.setState({ list });
+    this.updateCounts(task.state);
+  }
+
+  updateCounts(taskState) {
+    const states = ["todo", "inProgress", "completed"];
+    const prevState = states[taskState - 1];
+    const nextState = states[taskState];
+    this.setState({
+      [prevState]: --this.state[prevState],
+      [nextState]: ++this.state[nextState],
     });
   }
 
-  startTask(event) {
-    event.preventDefault();
-    const taskName = event.target.children[0].innerHTML;
-    let { todo, inProgress } = this.state;
-    let list = [...this.state.list];
+  filterList(state) {
+    const list = this.state.list;
+    const btnText = ["Start", "Complete"];
+    return (
+      <div>
+        { list
+            .filter(task => task.state === state)
+            .map((task, index) => (
+              <div key={index}>
+                <div>{task.name}</div>
+                <div>{task.description}</div>
+                { btnText[state]
+                  ? <FlatButton
+                    className="increment"
+                    label={btnText[state]}
+                    onClick={() => this.incrementState(task)}
+                    name={index}
+                  />
+                  : null
+                }
 
-    list = list.map(task => {
-      const newTask = { ...task };
-      if (task.name === taskName) {
-        newTask.state = "in-progress";
-      }
-      return newTask;
-    });
-
-
-    this.setState({
-      list,
-      todo: --todo,
-      inProgress: ++inProgress,
-    });
+              </div>)
+        )}
+      </div>
+    );
   }
 
   render() {
-    const { count, todo, inProgress, list } = this.state;
-    const todoList = list
-      .filter(task => task.state === "to-do")
-      .map((task, index) => (
-        <form
-          key={index}
-          onSubmit={this.startTask}
-          className="to-do-form"
-        >
-          <div>{task.name}</div>
-          <div>{task.description}</div>
-          <FlatButton
-            label="Start"
-            type="submit"
-          />
-        </form>)
-      );
-
-    const inProgressList = list
-      .filter(task => task.state === "in-progress")
-      .map((task, index) => (<p key={index}>{task.name}</p>));
+    const { todo, inProgress, completed } = this.state;
 
     return (
       <div>
         <p>
-          <span className="tasks">Tasks: {count}, </span>
           <span className="to-dos">To Do: {todo}, </span>
-          <span className="in-progress">In Progress: {inProgress}</span>
+          <span className="in-progress">In Progress: {inProgress}, </span>
+          <span className="completed">Completed: {completed}</span>
         </p>
+        <h3>Create New Task</h3>
         <TextField
           value={this.state.name}
           name="name"
@@ -110,11 +115,13 @@ class Project extends React.Component {
           hintText="Task Description"
           onChange={this.onChange}
         />
-        <FlatButton label="Create" onClick={this.addTask} />
-        <h3>To Do</h3>
-        {todoList}
-        <h3>In Progress</h3>
-        {inProgressList}
+        <FlatButton className="create" label="Create" onClick={this.addTask} />
+        <h3>To Do Tasks</h3>
+        {this.filterList(0)}
+        <h3>In Progress Tasks</h3>
+        {this.filterList(1)}
+        <h3>Completed Tasks</h3>
+        {this.filterList(2)}
       </div>
     );
   }
