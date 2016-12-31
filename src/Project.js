@@ -11,7 +11,8 @@ class Project extends React.Component {
       todo: 0,
       inProgress: 0,
       list: [],
-      input: "",
+      name: "",
+      description: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -20,7 +21,9 @@ class Project extends React.Component {
   }
 
   onChange(event) {
-    this.setState({ input: event.target.value });
+    let name = event.target.name
+    let value = event.target.value
+    this.setState({ [name]: value });
   }
 
   addTask() {
@@ -29,13 +32,15 @@ class Project extends React.Component {
 
     list.push({
       state: "to-do",
-      name: this.state.input,
+      name: this.state.name,
+      description: this.state.description,
       id: uuid(),
     });
 
     this.setState({
       list,
-      input: "",
+      name: "",
+      description: "",
       count: ++count,
       todo: ++todo,
     });
@@ -66,24 +71,25 @@ class Project extends React.Component {
   render() {
     const { count, todo, inProgress, list } = this.state;
     const todoList = list
-                        .filter(task => task.state === "to-do")
-                        .map((task, index) => (
-                          <form
-                            key={index}
-                            onSubmit={this.startTask}
-                            className="to-do-form"
-                          >
-                            <span>{task.name}</span>
-                            <FlatButton
-                              label="Start"
-                              type="submit"
-                            />
-                          </form>)
-                        );
+      .filter(task => task.state === "to-do")
+      .map((task, index) => (
+        <form
+          key={index}
+          onSubmit={this.startTask}
+          className="to-do-form"
+        >
+          <div>{task.name}</div>
+          <div>{task.description}</div>
+          <FlatButton
+            label="Start"
+            type="submit"
+          />
+        </form>)
+      );
 
     const inProgressList = list
-                              .filter(task => task.state === "in-progress")
-                              .map((task, index) => (<p key={index}>{task.name}</p>));
+      .filter(task => task.state === "in-progress")
+      .map((task, index) => (<p key={index}>{task.name}</p>));
 
     return (
       <div>
@@ -93,11 +99,18 @@ class Project extends React.Component {
           <span className="in-progress">In Progress: {inProgress}</span>
         </p>
         <TextField
-          value={this.state.input}
-          hintText="Make a new task"
+          value={this.state.name}
+          name="name"
+          hintText="Task Name"
           onChange={this.onChange}
         />
-        <FlatButton label="Add Task" onClick={this.addTask} />
+        <TextField
+          value={this.state.description}
+          name="description"
+          hintText="Task Description"
+          onChange={this.onChange}
+        />
+        <FlatButton label="Create" onClick={this.addTask} />
         <h3>To Do</h3>
         {todoList}
         <h3>In Progress</h3>
