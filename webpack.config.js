@@ -1,6 +1,7 @@
 /* eslint-env node */
 require("babel-polyfill");
 require("babel-register");
+require("sass-loader");
 const webpack = require("webpack");
 
 module.exports = {
@@ -15,11 +16,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loaders: ["babel"],
-        exclude: /node_modules/,
-      },
+      { test: /\.scss$/, loaders: ["style-loader", "css-loader", "sass-loader"] },
+      { test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: "babel" },
     ],
   },
   devServer: {
