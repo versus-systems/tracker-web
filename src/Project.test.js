@@ -5,8 +5,9 @@ import Project from "./Project";
 
 const list = [
   {
-    state: "to-do",
+    state: 0,
     name: "play smash brothers",
+    description: "tournament style",
     id: "test-id",
   },
 ];
@@ -17,35 +18,39 @@ describe("Project", () => {
     wrapper = shallow(<Project />);
     wrapper.setState({
       list,
-      count: 1,
-      todo: 1,
+      todo: 0,
       inProgress: 0,
+      completed: 0,
     });
-  });
-
-  it("renders tasks", () => {
-    const tasks = wrapper.find(".tasks").props();
-    const totalTasks = tasks.children[1];
-    expect(totalTasks).to.equal(1);
   });
 
   it("starts a task", () => {
     const todoTask = wrapper.state().list[0];
-    const todoForm = wrapper.find(".to-do-form");
+    const createButton = wrapper.find(".create");
 
     expect(todoTask).to.deep.eql(list[0]);
 
-    todoForm.simulate("submit", {
+    createButton.simulate("submit", {
       preventDefault: () => {},
       target: {
         children: [{ innerHTML: "play smash brothers" }],
       },
     });
 
+    const newTask = wrapper.state().list[0];
+
+    expect(wrapper.state().todo).to.equal(1);
+    expect(newTask.state).to.equal(0);
+    expect(newTask.name).to.equal("play smash brothers");
+    expect(newTask.description).to.equal("tournament style");
+    expect(newTask.id).to.equal("test-id");
+  });
+
+  it("increments a task", () => {
+    wrapper.find(".increment").simulate("click");
     const inProgressTask = wrapper.state().list[0];
 
-    expect(inProgressTask.state).to.equal("in-progress");
-    expect(inProgressTask.name).to.equal("play smash brothers");
-    expect(inProgressTask.id).to.equal("test-id");
+    expect(inProgressTask.state).to.equal(1);
+    expect(wrapper.state().inProgress).to.equal(1);
   });
 });

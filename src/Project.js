@@ -1,107 +1,159 @@
 import React from "react";
-import TextField from "material-ui/TextField";
-import FlatButton from "material-ui/FlatButton";
 import uuid from "uuid4";
+import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton";
+import Divider from "material-ui/Divider";
+import PieChart from "./PieChart";
+
 
 class Project extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
       todo: 0,
       inProgress: 0,
+      completed: 0,
       list: [],
-      input: "",
+      name: "",
+      description: "",
     };
 
     this.onChange = this.onChange.bind(this);
     this.addTask = this.addTask.bind(this);
-    this.startTask = this.startTask.bind(this);
+    this.incrementState = this.incrementState.bind(this);
   }
 
   onChange(event) {
-    this.setState({ input: event.target.value });
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({ [name]: value });
   }
 
-  addTask() {
-    let { count, todo } = this.state;
+  addTask(event) {
+    event.preventDefault();
     const list = [...this.state.list];
 
     list.push({
-      state: "to-do",
-      name: this.state.input,
+      state: 0,
+      name: this.state.name,
+      description: this.state.description,
       id: uuid(),
     });
 
     this.setState({
       list,
-      input: "",
-      count: ++count,
-      todo: ++todo,
+      name: "",
+      description: "",
+    });
+
+    this.updateCounts(0);
+  }
+
+  incrementState(item) {
+    const list = this.state.list;
+    const task = item;
+
+    if (task.state > 1) return;
+    task.state++;
+    this.setState({ list });
+    this.updateCounts(task.state);
+  }
+
+  updateCounts(taskState) {
+    const states = ["todo", "inProgress", "completed"];
+    const prevState = states[taskState - 1];
+    const nextState = states[taskState];
+    this.setState({
+      [prevState]: --this.state[prevState],
+      [nextState]: ++this.state[nextState],
     });
   }
 
-  startTask(event) {
-    event.preventDefault();
-    const taskName = event.target.children[0].innerHTML;
-    let { todo, inProgress } = this.state;
-    let list = [...this.state.list];
+  filterList(state) {
+    const list = this.state.list;
+    const btnText = ["Start", "Complete"];
+    return (
+      <div className={`state-${state}`}>
+        { list
+            .filter(task => task.state === state)
+            .map((task, index) => (
+              <div key={index} className="task">
+                <div className="text">
+                  <div>{task.name}</div>
+                  <div>{task.description}</div>
+                </div>
+                <div>
+                { btnText[state]
+                  ? <RaisedButton
+                    primary
 
-    list = list.map(task => {
-      const newTask = { ...task };
-      if (task.name === taskName) {
-        newTask.state = "in-progress";
-      }
-      return newTask;
-    });
-
-
-    this.setState({
-      list,
-      todo: --todo,
-      inProgress: ++inProgress,
-    });
+                    className="increment"
+                    label={btnText[state]}
+                    onClick={() => this.incrementState(task)}
+                    name={index}
+                  />
+                  : null
+                }
+                </div>
+              </div>)
+        )}
+      </div>
+    );
   }
 
   render() {
-    const { count, todo, inProgress, list } = this.state;
-    const todoList = list
-                        .filter(task => task.state === "to-do")
-                        .map((task, index) => (
-                          <form
-                            key={index}
-                            onSubmit={this.startTask}
-                            className="to-do-form"
-                          >
-                            <span>{task.name}</span>
-                            <FlatButton
-                              label="Start"
-                              type="submit"
-                            />
-                          </form>)
-                        );
-
-    const inProgressList = list
-                              .filter(task => task.state === "in-progress")
-                              .map((task, index) => (<p key={index}>{task.name}</p>));
+    const { todo, inProgress, completed } = this.state;
+    const dataset = [todo, inProgress, completed];
 
     return (
-      <div>
-        <p>
-          <span className="tasks">Tasks: {count}, </span>
-          <span className="to-dos">To Do: {todo}, </span>
-          <span className="in-progress">In Progress: {inProgress}</span>
-        </p>
-        <TextField
-          value={this.state.input}
-          hintText="Make a new task"
-          onChange={this.onChange}
-        />
-        <FlatButton label="Add Task" onClick={this.addTask} />
-        <h3>To Do</h3>
-        {todoList}
-        <h3>In Progress</h3>
-        {inProgressList}
+      <div className="container">
+
+        <h3>Sample Project Todo List</h3>
+        <PieChart dataset={dataset} />
+        <br />
+
+        <h3>Create New Task</h3>
+        <form
+          onSubmit={this.addTask}
+          className="create"
+        >
+          <TextField
+            value={this.state.name}
+            name="name"
+            hintText="Task Name"
+            onChange={this.onChange}
+          /><br />
+          <TextField
+            value={this.state.description}
+            name="description"
+            hintText="Task Description"
+            onChange={this.onChange}
+          /><br /><br />
+          <RaisedButton
+            label="Create"
+            type="submit"
+            primary
+          />
+        </form>
+        <br /><br />
+
+        <div>
+          <h3 className="todo">Todo Tasks</h3>
+          <Divider />
+          {this.filterList(0)}
+          <br />
+
+          <h3 className="in-progress">In Progress Tasks</h3>
+          <Divider />
+          {this.filterList(1)}
+          <br />
+
+          <h3 className="completed">Completed Tasks</h3>
+          <Divider />
+          {this.filterList(2)}
+          <br />
+        </div>
+
       </div>
     );
   }

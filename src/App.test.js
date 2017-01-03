@@ -12,6 +12,6 @@ describe("App", () => {
   it("renders project header", () => {
     const header = wrapper.find("AppBar");
     expect(header.length).to.equal(1);
-    expect(header.props().title).to.equal("Sample Project");
+    expect(header.props().title).to.equal("Sample Project Todo List");
   });
 });

@@ -5,7 +5,7 @@ import Project from "./Project";
 const App = () => (
   <div>
     <AppBar
-      title="Sample Project"
+      title="Sample Project Todo List"
       iconElementLeft={<div />}
     />
     <Project />
