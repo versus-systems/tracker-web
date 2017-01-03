@@ -10,7 +10,11 @@ describe("PieChart", () => {
   });
 
   it("renders tasks", () => {
-    const tasks = wrapper.find("#in-progress").find("h3").props();
+    const tasks = wrapper
+      .find("#in-progress")
+      .find("h3")
+      .find("span")
+      .props();
     const totalTasks = tasks.children[0];
     expect(totalTasks).to.equal(2);
   });

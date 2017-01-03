@@ -1,5 +1,69 @@
+$todo: #346499;
+$inProgress: #008569;
+$completed: #8DB501;
+
+.todo        { color: $todo }
+.in-progress { color: $inProgress }
+.completed   { color: $completed }
+
 body {
-  h3 {
-    color: red
+  font-family: 'Open Sans';
+  background: #f5f5f5;
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 400;
+  }
+}
+
+.container {
+  padding: 0 0 0 15px;
+}
+
+.pie-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pie-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  text-align: center;
+  text-transform: capitalize;
+
+  & > div {
+    margin: 0 0 5px 5px;
+    padding: 0 0 30px 0;
+  }
+}
+
+.task {
+  max-width: 420px;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+
+  .text div {
+    &:nth-child(1) {
+      font-weight: 600;
+    }
+    &:nth-child(2) {
+      color: #888;
+      font-size: 10pt;
+    }
+  }
+}
+
+.state-2 .text div {
+  color: #bbb !important;
+}
+
+@media (min-width: 960px) {
+  .pie-wrap {
+    & > div {
+      margin: 0 0 0 5px;
+    }
   }
 }
