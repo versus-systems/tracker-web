@@ -24,12 +24,6 @@ describe("Project", () => {
     });
   });
 
-  it("renders to-dos", () => {
-    const tasks = wrapper.find(".to-dos").props();
-    const totalTasks = tasks.children[1];
-    expect(totalTasks).to.equal(0);
-  });
-
   it("starts a task", () => {
     const todoTask = wrapper.state().list[0];
     const createButton = wrapper.find(".create");
